@@ -100,3 +100,31 @@ Explain Jenkins Distributed architecture
   - **SSH** :- For linux based agents
   - **Docker containers**
   - **K8S Agents** :- Dynamic scaling with cloud infrastructure
+ 
+Explain Jenkins dashboard and its configurations
+- 
+- Jenkins dashboard is the central hub where we can configure, monitor and manage jenkins jobs, nodes, executors, builds, plugins
+
+Jenkins Jobs
+-
+- Jenkins Job represent single task or process in jenkins. It could be build, test, deployment or any automated task
+- To create job, go to "New Item". Choose job type from Freestyle, pipeline, multi-branch pipeline, maven project,etc
+      
+![image](https://github.com/user-attachments/assets/0f421fa6-f3fe-4fbd-acac-2258565fcf37)
+![image](https://github.com/user-attachments/assets/77c65eb3-686d-4c61-b4cd-3f6bea4b2b4b)
+
+- To configure job, go to configure option
+
+![image](https://github.com/user-attachments/assets/cc7fcd71-dc09-4bc9-a4b3-cf6095e77d1a)
+
+  - In configure we can do settings such as :-
+    - Source Code management :- Integrate with VCS like Git,SVN
+    - Build triggers :- Define when the jobs should run (On commit, scheduled, manual trigger)
+    - Build steps :- Specify commands or scripts to be executed during build (run shell commands, etc)
+    - Post build actions :- To define actions that happen after build completion. Includes sending notifications, archiving artifacts, trigger other jobs
+   
+![image](https://github.com/user-attachments/assets/b2971198-79c9-43b3-841a-d9d1099e0856)
+![image](https://github.com/user-attachments/assets/292f03d0-fbb3-462b-8a05-0b7fe4233187)
+![image](https://github.com/user-attachments/assets/48cb8f36-36e9-4ec7-a8b3-75fcc60e343a)
+
+

@@ -50,3 +50,53 @@ Explain CI and CD
   - CI server releases deployable artifacts for testing with version
   - Success/failure report is generated
   - Continue to integrate and test the project continuously
+ 
+
+What is Jenkins and how it is used for CICD?
+-
+- Jenkins is an open-source automation server that helps developers build, test and deploy software efficiently. It is widely used in DevOps for CI/CD. It usually executes set of predefined steps
+  e.g :- Compile Source code - Build JAR - Deploy to Websphere - Run test cases
+- Execution for steps here can be time/event based.
+- It allows to continuously deliver our application by providing powerful ways to define build pipelines. Also allows to monitor execution of steps and allows to stop process if any of the step fails. Can also send notifications for success/failure
+- Jenkins by supporting all SDLC process automates build and tests at rapid rate,
+- **Workflow** 
+  - Code commit to SCR
+  - Jenkins detect change and triggers build
+  - Code is compiled, tested and packaged
+  - If test pass, jenkins deploy application to staging or prod
+  - Feedback is sent to developers for success/failure
+
+- Jenkins achieve the CI with the help of plugins and improves SDLC process
+- **_Features of Jenkins_**
+  - **CICD** :- Automates code deployment and integration, reducing manual effort
+  - **Plugin support** :- Plugins are the interfaces which allows jenkins to talk to other tools. Jenkins offers vast ecosystem of plugins to integrate with Git, docker, K8S, ansible
+  - **Pipeline as code** :- Jenkins support scripted and declarative pipelines for better automation and version control
+  - **Distributed builds** :- Jenkins can distribute workloads across multiple machines to improve efficiency
+ 
+Explain Jenkins Distributed architecture
+-
+- Jenkins follow master slave architecture to distribute workloads efficiently.
+- Beyond threshold, one jenkins instance is not enough to run all your jobs. So master-slave architecture allows jenkins to scale, handle multiple jobs simultaneously, by delegating tasks to multiple agents
+
+- **_Jenkins Master (Controller)_**
+  - Master node is central component responsible for managing jenkins config, scheduling build jobs, assigning jobs to agents, monitoring agents and build execution.
+  - It doesnt execute builds itself in large-scale setup
+  - Master instance is responsible for managing slaves
+
+- **_Jenkins Slave (Agent)_**
+  - It handles all requests from master. Slaves can be on different OS
+  - Executes build jobs assigned by master
+  - Runs tests, compiles code and pckage apps
+  - Reports job status back to master
+
+- **Workflow**
+  - Chnages are pushed to repo by dev
+  - Jenkins master detects changes and triggers pipeline job as per webhook or SCM polling
+  - Master assigns job to agents based on labels, workload and job config
+  - Agent executes build - Compiles code, run tests and deploy artifacts
+  - Agents send results back to master using logs
+
+- **_Jenkins Master-Slave communication_**
+  - **SSH** :- For linux based agents
+  - **Docker containers**
+  - **K8S Agents** :- Dynamic scaling with cloud infrastructure

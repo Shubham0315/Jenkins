@@ -169,3 +169,66 @@ Jenkins Plugins
 - Plugins extend jenkins capabilities, enabling integration with various tools, systems and additional functionality like code quality analysis, notifications, version control. Used to integrate jenkins with other tools of SDLC
 - To configure plugins :- Manage jenkins - Managa plugins - Install plugins from available tab
 
+Explain Manage Jenkins 
+-
+1. **_Configure System_**
+- In jenkins configure system page allows to set up and manage global settings for jenkins. These configurations define how jenkins behaves and interacts with tools, services and resources
+  - **Home dir** :- location where all jenkins information is stored
+  - **System message** :- To boradcast message to all users of jenkins instance which is displayed on dashboard
+  - **No of executors** :- Max. no of jobs that we can run in parallel on single instance
+  - **Quiet period** :- Duration is sec jenkins has to wait before starting new job
+  - **SCM Checkout retry count** :- Jenkins while connecting to SCR, it specifies max no of retries jenkins should make if it fails
+  - **Restrict project naming** :- To define all jobs should contain specific keywords
+ 
+![image](https://github.com/user-attachments/assets/a6a57f5f-6050-4139-9376-5ca5e773ef60)
+
+  - **Jenkins URL** :- Base URL jenkins uses to generate links in notifications, emails and web interface (http://localhost:8080/)
+  - **Extended email Nofitications** :- To send emails with build status
+
+2. **_Configure global security_**
+- Using this we can ensure our jenkins instance is secure, especially when its accessible over network
+- We can use Security Realm (Authentication) to define how jenkins will authenticate users. We can do this by any of below:-
+  - **Jenkins own user DB** :- Allows to manage users and passwords directly in jenkins. We can manually add users and assign roles
+  - **LDAP** :- Integrate with LDAP server to authenticate users
+
+![image](https://github.com/user-attachments/assets/5e76d88b-b5e4-4f79-b289-43981a92430e)
+
+- Authorization controls what users and groups can do with jenkins
+  - **Matrix based security** :- Provides fine grained control over permissions. Assign specific permissions to diff users or groups
+  - **Role based strategy** :- Allows assigning specific roles to different set of permissions
+  - **Project based matrix authorization** :- We can define permissions for each project, providing more granular control over who can access which jobs
+  - **Anyone can do anything**
+
+![image](https://github.com/user-attachments/assets/5e83ddba-ab08-454d-aab4-1fbd713fb086)
+
+- **Enable CSRF Protection (Cross site Request Forgery)**
+  - Prevents malicious users from tricking authorized users into performing unintended actions
+
+3. **Manage Plugins**
+- To install, enable plugins
+
+4. **System Information**
+- Displays list of current java system prop and env variables
+
+5. **System Log**
+- To view Jenkins log files in real time to troubleshoot
+
+![image](https://github.com/user-attachments/assets/bf945a63-6729-4de2-a0d8-62440e292333)
+
+6. **Load statistics**
+- Displays graphical data on how busy jenkins instance is in terms of no of concurrent builds and length of build queue which gives idea on how long our job need to wait before getting executed
+- It provides idea if extra build nodes are required
+
+7. **Manage Nodes**
+- For jenkins distributed architecture we can setup nodes as per requirement
+
+8. **Manage Users**
+- Setup new users, delete or modify existing
+
+![image](https://github.com/user-attachments/assets/253158e7-b073-4a9e-b101-aa3234b62262)
+
+- **Build Executor status** :- If we've set 2 executors and run 3 jobs, 3rd job will be in queue till one of the first 2 gets completed
+- **Build queue** :- Shows all build jobs which're triggered but are qaiting in queue to get executed
+
+![image](https://github.com/user-attachments/assets/9b80d8af-d821-493c-9f44-f30cc6fb613e)
+

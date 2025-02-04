@@ -298,4 +298,118 @@ Explain jenkins job configurations
 
 General Section
 -
-- 
+- **Project name and description** :- decription to define purpose of job
+- **Discard old builds** :- Limits history of builds to save. Either for no of days or no of builds we can keep based on log rotation strategy
+
+![image](https://github.com/user-attachments/assets/13aa9038-5541-462b-8125-24b7ba08a81b)
+
+- **GitHub project URL**
+- **Parameterized** :- Defines input parameters for dynamic builds. We can try "branch name"
+
+![image](https://github.com/user-attachments/assets/cdc5c600-0088-412a-8a99-e9879ded335b)
+
+- **Throttle builds** :- To maintain time interval between consecutive run of a job. In below SS. we can run build once in an hour
+
+![image](https://github.com/user-attachments/assets/7487477b-1987-4c43-a909-ebf65e0bd3a1)
+
+- **Execute concurrent builds** :- Allows to run multiple builds in parallel  
+
+Source Code Management
+-
+- Used to configure job's connection to source code repo
+- Supported SCM options :- Git, SVN
+- **Repository URL** :- To define git repo location
+- **Credentials** :- Used for authentication (SSH key, tokens)
+- **Branch specifier** :- Branch to build
+- **Polling SCM** :- Enables auto detetction of code changes
+
+![image](https://github.com/user-attachments/assets/d31cab35-5e37-49cc-87f1-6f36a20f5689)
+
+Build Triggers
+-
+- Defines when and how job should be triggered
+- **Trigger build remotely (via WEBHOOK/API Token)** :- Used for CICD integrations (e.g., H/5 * * * * for every 5 minutes).
+- **Poll SCM** :- Checks for changes in repository at regular intervals and trigger acc to it
+- **Build after other projects are built** :- Triggers job after other is done
+- **Schedule** :- Uses cron syntax to schedule builds (e.g., @daily, 0 12 * * * for noon builds)
+- **Github webhook** :- Trigger build when code is pushed to github
+
+![image](https://github.com/user-attachments/assets/f6cedb3b-0206-4a3e-9785-91bef111fcf6)
+
+Build Environment
+-
+- Configures runtime environment before executing build
+- **Delete workspace before build starts** :- Ensures clean workspace
+- **Use secret text or files** :- Injects credentials securely
+- **Provide env variables** :- to use in script
+- **Run build steps in parallel** :- execution for faster builds
+- **Terminate build if its stuck**
+- **Add timestamp to console output**
+
+![image](https://github.com/user-attachments/assets/70bf2a05-6cc2-4b3b-b6cd-9c0780a353d3)
+
+Build Steps
+-
+- Define actual execution tasks for job
+- **Execute shell** :- Run shell commands
+- **Execute windows batch command**
+- **Invoke ant/gradle/maven** :- Trigger builds for java projects
+- **Docker build and publish** :- Builds and pushes docker images
+- **Run tests** :- Executes test cases
+
+![image](https://github.com/user-attachments/assets/ffc1afdc-3001-460a-8547-8d47b0579cdd)
+
+Post Build Actions
+-
+- Defines actions to take place after build process is complete
+- **Archive artifacts** :- stores output for later use
+- **Send email notifications** :- about failure/success of build
+- **Trigger another job** :- Runs dependent jobs automatically
+- **Deploy to server**
+- **Publish to docker registry** :- push images
+
+![image](https://github.com/user-attachments/assets/97834ed1-dc35-475d-b50f-fdc91086a858)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain integartion of jenkins with Github using poll SCM
+-
+- Integrating jenkins with Github using poll SCM allows jenkins to auto trigger builds when it detects changes in git repo at scheduled intervals. It is useful when webhooks cannot be used or when jenkins needs to check for changes periodically
+- Prerequisites :- Jenkins, git plugin, github repo, git installed on jenkins server
+
+- Enable Poll SCM in build triggers
+  - Go to Build triggers - Poll SCM - Enter cron expression (H/5 * * * * or H/30 * * * *)
+  - Make changes in git repo and check whether our job runs every 5 mins as per cron expression set
+
+![image](https://github.com/user-attachments/assets/e3527fdc-1940-4c09-9beb-beaa33d1a26b)
+
+- If jenkins is not detecting POLL SCM Changes :-
+  - Ensure correct GitHub creds and repo URL
+  - Run git ls-remote on jenkins to check repo access
+  - Manually trigger build to check connectivity
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain job chaining in jenkins
+-
+- Job chaining in jenkins refers to process of triggering multiple jobs in sequential or parallel manner. This approach is useful for CICD pipelines where different jobs handle distinct stages of SDLC like compile, unit test, integration test, deploy
+
+- Upstream and downstream jobs :- US job means job that triggers another job and DS job means job that is triggered by upstream job
+  - Job a --> Job B --> Job C (A triggers B and B triggers C)
+ 
+Methods for Job Chaining
+-
+1. **Build other projects (Freestyle jobs)**
+- Go to configure - Post build actions - Build other projects - Enter downstream job to build after this gets complete
+
+2. **Parameterized Trigger Plugin (For passing variables)**
+- Post build actions - Trigger parameterized build on other projects - Specify downstream job - Add parameters to pas (Branch, version)
+
+![image](https://github.com/user-attachments/assets/3d184618-8165-48c2-99c9-8c9e8abd683e)
+
+3. **Build pipeline Plugin**
+- Install "Build pipeline Plugin"
+- Go to Build pipeline view
+- Configure job flow :- Build - Test- Deploy
+
+4. **Pipeline script**

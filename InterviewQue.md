@@ -423,6 +423,9 @@ Explain jenkins integration with github using webhooks
 - This is more efficient than Poll SCM as jenkins does not need to check for changes periodically, instead github notifies jenkins instantly when push event occurs.
 
 - **Prerequisites** :- Jenkins, Git plugin, Github repo, Github Personal Access Token
+![image](https://github.com/user-attachments/assets/aad08f84-5920-4775-bb76-7545131c111c)
+![image](https://github.com/user-attachments/assets/3af0c9fe-49bb-444e-9df1-7553a37455ea)
+
 
 - **Configure Jenkins to accept webhooks** :- Manage Jenkins - Configure system - Enable GitHub webhooks
 - **Create jenkins job** :- Freestyle - SCM fill (Repo URL, Branch, credentials)
@@ -433,3 +436,48 @@ Explain jenkins integration with github using webhooks
 
 - **Test Webhook integration** :-   Make commit in Github - Check jenkins job (triggered automatically) - Verify webhook -
   - Steps to verify :- GitHub - Settings - Webhooks - delivery logs - Response code 200 means jenkins received webhook successfully
+
+- **Troubleshooting** :-
+  - Jenkins not triggering builds :- Ensure webhook URL is correct. Check jenkins logs (Manage jenkins - System logs). Ensure GitHub webhook enabled in job
+  - Webhook shows error in Github :- Check webhook delivery logs. Ensure jenkins accessible from github
+  
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain Build pipeline and delivery pipeline
+-
+- In the context of DevOps CICD, build and delivery pipelines are key components used to automate software delivery process. Both pipelines consist of various stages but they serve different purposes with SDLC
+
+Build Pipeline
+-
+- Build Pipeline refers to automated process that builds and tests software app. It focusses on ensuring that the code is correctly compiled, dependencies are installed and unit tests are passed.
+- Key Components
+  - **Source Code Retrieval** :- Pipeline starts by pulling latest code from VCS
+  - **Build** :- Code is compiled and packaged into executable format (JAR/WAR/EAR)
+  - **Artifacts** :- Once build is success, build artifacts are stored in artifact repo (Nexus for JAR, Dockerhub for images)
+
+- Build pipeline helps in early issue detection in testing, also ensures every build is consistent. When we trigger 1st job, due to job chaining rest of the jobs in pipeline run.
+
+![image](https://github.com/user-attachments/assets/74e135b8-7e53-431f-9f37-437033175d02)
+![image](https://github.com/user-attachments/assets/fe59a6c7-3e5a-42d7-9e11-d849a492d4b5)
+
+- Tools used are jenkins, Maven, Git, JUnit/TestNG
+
+Delivery pipeline
+-
+- It automates process of deploying software to diff env such as dev, staging, prod. It ensures software is tested and verified at every stage before prod release
+- The delivery pipeline focuses on moving code from the development environment to the production environment while ensuring quality, security, and compliance.
+- Key Components
+  - **Build** :- Compile, test and package
+  - **Deploy to env** :- Dev env
+  - **Auto testing**
+  - **Manual approval** :- Before prod release, to allow QA to validate build
+  - **Deploy to staging (preprod)** :- Involved UAT
+  - **Deploy to prod** :- If all build test pass, auto or manual deploy being available to end users
+  - **Monitoring**
+
+- Delivery pipeline is used for end to end autonation (code commit to prod release), CICD, QA, rapid feedback (monitoring)
+- Tools used here are jenkns, Gitlab CICD, Dockerm K8S, AWS
+
+By below SS, we can create build/delivery pipelines
+![image](https://github.com/user-attachments/assets/51449965-c6b9-4f06-982c-33861a6980e9)
+

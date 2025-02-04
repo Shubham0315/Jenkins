@@ -481,3 +481,27 @@ Delivery pipeline
 By below SS, we can create build/delivery pipelines
 ![image](https://github.com/user-attachments/assets/51449965-c6b9-4f06-982c-33861a6980e9)
 
+
+** Build pipeline is better than delivery pipeline due to better options on display **
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain the concept of Jenkins pipeline
+-
+- Jenkins pipeline is a suite of plugins in jenkins that supports CI and CD. It defines series of automated steps (stages) that software application undergoes as it moves through CICD lifecycle from code commit to prod release
+- Jnekins pipelines are written in domain-specific language as they help automate building, testing and deploying code.
+- Build and delivery pipeline plugins are used for simple pipelines but they lack customizability required in case of large pipelines or complex projects
+
+- Core of jenkins pipelines are "jenkinsfile"
+- Jenkins supports building CD pipelines through web UI or scripted jenkins file (groovy syntax)
+- For 10 step pipeline, we wont create 10 jobs. We can code these jobs and then run them on pipeline. We can set code in jenkinsfile which we can put in SCM like git
+
+**Features of Jenkins Pipelines**
+- Code the pipeline (into Jenkinsfile)
+- Durability
+- Handles user input
+- Parallel job execution
+- Complex pipelines
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+

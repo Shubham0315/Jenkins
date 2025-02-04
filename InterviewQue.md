@@ -267,3 +267,35 @@ Explain user and role management in Jenkins
   - **Enable role based strategy** :- Manage jenkins - Configure global security - Role based auth
   - **Define roles** :- Manage and assign roles - Assign roles
   - **Assign users/groups to roles** :- Add users to respective roles under assign roles
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain role based strategy for users in jenkins
+-
+- In project based matrix, if we've 100's of users, it will be difficult to manage access of all
+- Role based auth strategy allows admins to define roles with specific permissions and assign them to users and groups. It provides fine grained access control making it ideal for large teams managing multiple projects
+
+- **To enable RBAC** :-
+  - Install plugin named Role based auth strategy, then restart jenkins
+  - Enable role based security :- Configure global security - Authorization - Role based strategy
+
+- **_Types of roles in Jenkins_** :-
+  - **Global Roles (System level permissions)** :- Admin (full access over jenkins), developer (can configure jobs but not modify settings), Viewer (Read only)
+  - **Project roles (Job level permissions)** :- Build manager (trigger builds and manage jobs), test engineer (execute test but not configure jobs), read only (only view job status)
+  - **Agent (node) roles (For build executors)** :- Node admin (configure and manage nodes), node user (run builds but not modify configs)
+ 
+To configure RBAC
+- **Define roles** :- Manage and assign roles - Manage roles - Create roles under global roles - Check permission for each role
+- **Assign users to roles** :- Manage and assign roles - Assign roles - Enter username or group under global roles and assign roles
+
+![image](https://github.com/user-attachments/assets/f703ef2b-9855-4f56-aee6-b39c51f004eb)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain jenkins job configurations 
+-
+- Jenkins jobs define automation workflow for building, testing and deploying apps. When configuring job, various settings determine how jenkins interact with source code, trigger builds, execute tasks, and handles post build actions
+
+General Section
+-
+- 

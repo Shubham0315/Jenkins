@@ -413,3 +413,20 @@ Methods for Job Chaining
 - Configure job flow :- Build - Test- Deploy
 
 4. **Pipeline script**
+- Here inside script we can define stages and jobs inside those stages. So the jobs will run in sequence of the stages
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain jenkins integration with github using webhooks
+-
+- Integraing jenkins with Github webhooks allows jenkins to automatically trigger a build whenever there is a change in GitHub repo.
+- This is more efficient than Poll SCM as jenkins does not need to check for changes periodically, instead github notifies jenkins instantly when push event occurs.
+
+- **Prerequisites** :- Jenkins, Git plugin, Github repo, Github Personal Access Token
+
+- Configure Jenkins to accept webhooks :- Manage Jenkins - Configure system - Enable GitHub webhooks
+- Create jenkins job :- Freestyle - SCM fill
+- Enable build triggers for webhooks :- Build triggers - GitHub hook trigger for GITScm polling
+- Create webhook in Github :- Open GitHub repo - Settings - Webhooks - Add webhooks - Payload URL (http://JenkinsURL:8080/github-webhook) - Content type(application/json) - Add webhook
+- Test Webhook integration :-   Make commit in Github - Check jenkins job (triggered automatically) - Verify webhook -
+  - Steps to verify :- GitHub - Settings - Webhooks - delivery logs - Response code 200 means jenkins received webhook successfully

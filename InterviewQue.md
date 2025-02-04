@@ -7,6 +7,8 @@ What was the process before CI?
   - No constant feedback from dev as we need to wait for deployment and testing to find bugs if any
   - Bug fixing was costly. If test fails, locating and fixing bug was very time consuming as dev has to update entire code base to check and fix the bug resulting in slow SD process
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
 How CI was to the rescue of traditional SDLC process?
 -
 - Here in CI, developers does ferquent check ins in SCR. As soon as they commit the code, it gets build, test and deploy automatically by jenkins

@@ -424,9 +424,12 @@ Explain jenkins integration with github using webhooks
 
 - **Prerequisites** :- Jenkins, Git plugin, Github repo, Github Personal Access Token
 
-- Configure Jenkins to accept webhooks :- Manage Jenkins - Configure system - Enable GitHub webhooks
-- Create jenkins job :- Freestyle - SCM fill
-- Enable build triggers for webhooks :- Build triggers - GitHub hook trigger for GITScm polling
-- Create webhook in Github :- Open GitHub repo - Settings - Webhooks - Add webhooks - Payload URL (http://JenkinsURL:8080/github-webhook) - Content type(application/json) - Add webhook
-- Test Webhook integration :-   Make commit in Github - Check jenkins job (triggered automatically) - Verify webhook -
+- **Configure Jenkins to accept webhooks** :- Manage Jenkins - Configure system - Enable GitHub webhooks
+- **Create jenkins job** :- Freestyle - SCM fill (Repo URL, Branch, credentials)
+- **Enable build triggers for webhooks** :- Build triggers - GitHub hook trigger for GITScm polling
+- **Create webhook in Github** :- Open GitHub repo - Settings - Webhooks - Add webhooks - Payload URL (http://JenkinsURL:8080/github-webhook) - Content type(application/json) - Add webhook
+
+![image](https://github.com/user-attachments/assets/a1f5aa9a-b350-4858-bfa8-31a78ba20e52)
+
+- **Test Webhook integration** :-   Make commit in Github - Check jenkins job (triggered automatically) - Verify webhook -
   - Steps to verify :- GitHub - Settings - Webhooks - delivery logs - Response code 200 means jenkins received webhook successfully

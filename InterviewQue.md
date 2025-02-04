@@ -214,25 +214,25 @@ Explain Manage Jenkins
 - **Enable CSRF Protection (Cross site Request Forgery)**
   - Prevents malicious users from tricking authorized users into performing unintended actions
 
-3. **Manage Plugins**
+3. **_Manage Plugins_**
 - To install, enable plugins
 
-4. **System Information**
+4. **_System Information_**
 - Displays list of current java system prop and env variables
 
-5. **System Log**
+5. **_System Log_**
 - To view Jenkins log files in real time to troubleshoot
 
 ![image](https://github.com/user-attachments/assets/bf945a63-6729-4de2-a0d8-62440e292333)
 
-6. **Load statistics**
+6. **_Load statistics_**
 - Displays graphical data on how busy jenkins instance is in terms of no of concurrent builds and length of build queue which gives idea on how long our job need to wait before getting executed
 - It provides idea if extra build nodes are required
 
-7. **Manage Nodes**
+7. **_Manage Nodes_**
 - For jenkins distributed architecture we can setup nodes as per requirement
 
-8. **Manage Users**
+8. **_Manage Users_**
 - Setup new users, delete or modify existing
 
 ![image](https://github.com/user-attachments/assets/253158e7-b073-4a9e-b101-aa3234b62262)
@@ -242,3 +242,28 @@ Explain Manage Jenkins
 
 ![image](https://github.com/user-attachments/assets/9b80d8af-d821-493c-9f44-f30cc6fb613e)
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain user and role management in Jenkins
+-
+- Jenkins provides flexible user and role management system that ensures secured and controlled access to the system. It consists of 2 components
+
+1. **_Security Realm (Authentication)_**
+- It handles authentication, verifying user identity before granting access. Jenkins support multiple authentication methods
+  - **Jenkins own user DB** :- Create users manually. Passwords asre stored internally
+  - **LDAP** (Lightweight Directory Access Protocol) :- Integrates with corporate directory services. Users authenticate using their existing company credentials
+  - **SSO and OAuth** :- Supports authetication via Google, Github. Useful for large organizations with SSO user management (Charter)
+  - **External authentication (via plugins)** :- Integrates with security providers like SAML, OpenID, Crowd
+
+2. **_Authorization (Access Control)_**
+- After authentication, jenkins defines what users can do through authorization strategies
+  - **Anyone can do anything** :- Security risk for sensitive environments
+  - **Logged in users can do anything** :- Only authenticated users have full control. Anonymous users have no access
+  - **Matrix based security (for enterprises)** :- Fine grained permissions at user/group level like read, configure, delete
+  - **Role based strategy (Best for large teams)** :- Provides role with predefined permissions. Assigns users/groups to roles based on responsibilities. Requires "Role based auth strategy plugin"
+ 
+- Implementing RBAC in Jenkins
+  - Install Role based Auth strategy plugin
+  - **Enable role based strategy** :- Manage jenkins - Configure global security - Role based auth
+  - **Define roles** :- Manage and assign roles - Assign roles
+  - **Assign users/groups to roles** :- Add users to respective roles under assign roles

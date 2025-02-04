@@ -17,6 +17,7 @@ How CI was to the rescue of traditional SDLC process?
   - Constant feedback is given to dev
   - Effective bug fixing as developers look for code in last commit only not the whole codebase
   - SD process is fast
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 Explain CI and CD
 -
@@ -53,6 +54,7 @@ Explain CI and CD
   - Success/failure report is generated
   - Continue to integrate and test the project continuously
  
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 What is Jenkins and how it is used for CICD?
 -
@@ -74,6 +76,8 @@ What is Jenkins and how it is used for CICD?
   - **Plugin support** :- Plugins are the interfaces which allows jenkins to talk to other tools. Jenkins offers vast ecosystem of plugins to integrate with Git, docker, K8S, ansible
   - **Pipeline as code** :- Jenkins support scripted and declarative pipelines for better automation and version control
   - **Distributed builds** :- Jenkins can distribute workloads across multiple machines to improve efficiency
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
  
 Explain Jenkins Distributed architecture
 -
@@ -102,6 +106,8 @@ Explain Jenkins Distributed architecture
   - **SSH** :- For linux based agents
   - **Docker containers**
   - **K8S Agents** :- Dynamic scaling with cloud infrastructure
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
  
 Explain Jenkins dashboard and its configurations
 - 
@@ -170,6 +176,8 @@ Jenkins Plugins
 -
 - Plugins extend jenkins capabilities, enabling integration with various tools, systems and additional functionality like code quality analysis, notifications, version control. Used to integrate jenkins with other tools of SDLC
 - To configure plugins :- Manage jenkins - Managa plugins - Install plugins from available tab
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 Explain Manage Jenkins 
 -

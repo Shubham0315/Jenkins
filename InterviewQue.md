@@ -268,6 +268,8 @@ Explain user and role management in Jenkins
   - **Define roles** :- Manage and assign roles - Assign roles
   - **Assign users/groups to roles** :- Add users to respective roles under assign roles
 
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
 Explain role based strategy for users in jenkins

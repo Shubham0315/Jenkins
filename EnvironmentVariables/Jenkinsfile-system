@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Check System Variables') {
+            steps {
+                sh 'echo "System User : $USER"'
+                sh 'echo "Home Directory : $HOME"'
+                sh 'echo "Current Path : $PATH"'
+            }
+        }
+    }
+}

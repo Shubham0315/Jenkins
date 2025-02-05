@@ -277,6 +277,16 @@ Explain role based strategy for users in jenkins
 - In project based matrix, if we've 100's of users, it will be difficult to manage access of all
 - Role based auth strategy allows admins to define roles with specific permissions and assign them to users and groups. It provides fine grained access control making it ideal for large teams managing multiple projects
 
+- To implement project based strategy :-
+  - Manage jenkins - security - Select authorization as project based - Add user
+ 
+  ![image](https://github.com/user-attachments/assets/06a3cabe-9aa7-49e5-8af4-8f3a166966a4)
+
+  - Now go to our job and in general section - Select "Enable project based strategy" - Add user and give required access so that he can do only specific task for given project
+
+  ![image](https://github.com/user-attachments/assets/37b3625d-9f4c-4985-b536-4ee41b20f33d)
+
+
 - **To enable RBAC** :-
   - Install plugin named Role based auth strategy, then restart jenkins
   - Enable role based security :- Configure global security - Authorization - Role based strategy
@@ -291,6 +301,19 @@ To configure RBAC
 - **Assign users to roles** :- Manage and assign roles - Assign roles - Enter username or group under global roles and assign roles
 
 ![image](https://github.com/user-attachments/assets/f703ef2b-9855-4f56-aee6-b39c51f004eb)
+
+- To implement RBAC:-
+  - Manage jenkins - Users - Create user
+
+![image](https://github.com/user-attachments/assets/0370b058-8c3c-4fe5-9150-19ebc4309b89)
+
+  - Manage jenkins - Manage and assign roles - Manage roles - Add role
+
+![image](https://github.com/user-attachments/assets/6de6cadb-c3ae-4824-a178-7e5aa16cf1c7)
+
+  - Now go to assign roles - assign the role created to user
+
+![image](https://github.com/user-attachments/assets/4c0e9362-9a31-4d11-a5b4-0b87dd296922)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 

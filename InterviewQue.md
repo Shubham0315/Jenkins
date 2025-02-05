@@ -308,6 +308,7 @@ To configure RBAC
 ![image](https://github.com/user-attachments/assets/0370b058-8c3c-4fe5-9150-19ebc4309b89)
 
   - Manage jenkins - Manage and assign roles - Manage roles - Add role
+  - This is a global level role for project team and management team
 
 ![image](https://github.com/user-attachments/assets/6de6cadb-c3ae-4824-a178-7e5aa16cf1c7)
 

@@ -1,0 +1,21 @@
+node {
+  stage('Checkout Code') {
+    echo 'Checking out code'
+    checkout scm                 #Fetch code from repo
+  }
+
+  stage('Build') {
+    echo 'Building the project'
+    sh 'mvn clean package'      #Runs maven build command
+  }
+
+  stage('Test') {
+    echo 'Running tests'
+    sh 'mvn test'              #executes unit tests
+  }
+
+  stage('Deploy') {
+    echo 'Deploying the application'
+    sh 'scp target/*.jar user@server:/websphere/AppServer/profiles'      #Deploys to server
+  }
+}

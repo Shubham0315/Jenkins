@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    
+    environment {
+        DEPLOY_SERVER = 'user@server:/websphere/AppServer/profiles'     #Path to deploy
+        BRANCH_NAME = 'main'
+    }
+    
+    stages {
+        stage('Checkout code') {
+            steps {
+                echo "Fetching Source Code"
+                checkout scm
+            }
+        }
+        
+        stage('Build and Test') {
+            parallel {
+                stage('Build') {
+                    steps {
+                        echo 'Building application'
+                        sh 'mvn clean package'
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo 'Testing application'
+                        sh 'mvn test'
+                    }
+                }
+            }    
+        }
+        
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo "Deploying application"
+                sh 'scp target/*.jar ${DEPLOY_SERVER}'
+            }
+        }
+    }
+        
+        post {
+            success {
+                echo 'Build successful'
+            }
+            failure
+                echo 'Build Failed'
+                mail to: 'shubham.devops@gmail.com',
+                    subject: "Jenkins Build Failed: ${env.JOB_NAME}",
+                    body: "Build ${env.BUILD_NUMBER} failed!\nCheck Logs: ${env.BUILD_URL}"
+            }
+        }
+    }
+}

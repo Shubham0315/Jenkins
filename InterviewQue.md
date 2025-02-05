@@ -597,3 +597,60 @@ Explain post-build actions in jenkins pileline
 
 ![image](https://github.com/user-attachments/assets/62f6d776-15ea-4a34-a42a-e484655fc9fa)
 
+- Types of Post build actions
+  - **Success** :- Only if pipeline succeeds. To send success notifications,deploy artifacts
+  - **Failure** :- Only if pipeline fails. To notify team, trigger rollback actions
+  - **Always** :- Runs regardless of success/failure. Used to cleanup, logging and sending reports
+  - **Unstable** :- If the pipeline is marked as unstable. It alerts team but doesn't stop deployment
+  - **Changed** :- If the pipeline result differs from last run. Used to detect regression or fixes
+ 
+- Example illustrating Post build actions :-
+
+![image](https://github.com/user-attachments/assets/f0ed8bbc-e567-42df-a680-e0ec2de4be14)
+
+- In above SS
+  - **success** :- sends success email when build passes
+  - **failure** :- Sends failure email with build link
+  - **unstable** :- detects test failures but doesn't stop deployments
+  - **always** :- cleans up workspace after every execution
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Environment variables in Jenkinsfile
+-
+- Env variables in jenkins allow you to store and reuse dynamic values like credentials, build details and system properties within pipeline
+  - Help in configuring builds dynamically (branch names, workspace paths)
+  - You can define custom variables inside jenkinsfile
+  - Jenkins provides predefined env variables that can be accessed globally
+
+Types of Env Variables in Jenkinsfile
+-
+1. **Predefined Jenkins Env Variables**
+- Jenkins provides bult-in env variables that store pipeline metadata
+- BUILD_NUMBER, BUILD_ID, BUILD_URL, JOB_NAME, WORKSPACE, BRANCH_NAME, GIT_COMMIT, GIT_BRANCH
+
+![image](https://github.com/user-attachments/assets/578ceecb-4ca5-450e-9189-6dfb99748aab)
+
+2. **User Defined Env Variables**
+- We can define custom env var inside environment{} block
+- APP_VERSION, DEPLOY_PATH
+
+![image](https://github.com/user-attachments/assets/50311927-ad78-4b84-9f1a-fec396512822)
+
+3. **System Env Variables**
+- Jenkins can also access system-level environment variables from underlying OS
+- USER, HOME, PATH
+
+![image](https://github.com/user-attachments/assets/83738727-ce69-4575-a541-f4da3663b623)
+
+4. Using Credentials as Env Variables
+- To store sensitive values(passwords, API keys, SSH Keys) securely we can use Jenkins creds instead of hardcoding them
+- Manage jenkins - Manage credentials - Add new credential - Use "withCredentials" to retrieve credentials
+
+![image](https://github.com/user-attachments/assets/152f5d18-999a-4022-b8ea-c662f05bc23a)
+
+- Best practices to use Env variables in jenkinsfile:-
+  - Use env variables instead of hardcoding values
+  - Use jenkins creds for sensitive data
+  - Print variables for debugging
+  - Use meaningful variable names for readability

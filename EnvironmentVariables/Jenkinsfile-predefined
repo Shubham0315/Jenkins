@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Print Env Variables') {
+            steps {
+                echo "Build Number : ${env.BUILD_NUMBER}"
+                echo "Job Name : ${env.JOB_NAME}"
+                echo "Branch Name : ${env.BRANCH_NAME}"
+                echo "Git Commit Hashr : ${env.GIT_COMMIT}"
+                echo "Workspace Directory : ${env.WORKSPACE}"
+            }
+        }
+    }
+}

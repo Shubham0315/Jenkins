@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building the project"
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Running tests"
+                sh 'mvn test'
+            }
+        }
+        
+        post {
+            success {
+                echo 'Build successful'
+                mail to: 'shubham.devops@gmail.com',
+                    subject: "Jenkins Build Success: ${env.JOB_NAME}",
+                    body: "Build ${env.BUILD_NUMBER} success!\nCheck Details: ${env.BUILD_URL}"
+            }
+            success {
+                echo 'Build successful'
+                mail to: 'shubham.devops@gmail.com',
+                    subject: "Jenkins Build Success: ${env.JOB_NAME}",
+                    body: "Build ${env.BUILD_NUMBER} success!\nCheck Details: ${env.BUILD_URL}"
+            }
+            failure
+            success {
+                echo 'Build Failed'
+                mail to: 'shubham.devops@gmail.com',
+                    subject: "Jenkins Build Failed: ${env.JOB_NAME}",
+                    body: "Build ${env.BUILD_NUMBER} failed!\nCheck Logs: ${env.BUILD_URL}"
+            }
+            
+            unstable {
+                echo 'Build is unstable'
+            }
+            
+            always {
+                echo 'Cleaning workspace'
+                cleanWs()
+            }
+            
+            changed {
+                echo 'Build result changed from last run'
+            }
+        }
+    }
+}

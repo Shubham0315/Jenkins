@@ -505,3 +505,95 @@ Explain the concept of Jenkins pipeline
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
+Scripted Pipeline
+-
+- It is powerful way to define CICD workflows using Groovy based scripting. It provides flexibility and control over complex build and deployment process.
+- A Scripted Pipeline follows a node {} block where each stage of the CI/CD process is defined.
+
+- **Key Features**
+  - Uses Groovy DSL for pipeline scripting
+  - Dynamic and flexible :- allows loops, conditionals and custom logic
+  - Used node{} block to define execution environments. Node{} defines where pipeline gets executed
+  - Recommended for complex workflows requiring programmatic tools
+
+![image](https://github.com/user-attachments/assets/5fe344d8-b44a-4dcd-bc6a-9cafff38205d)
+
+- Scripted pipelines are harder to read and maintain than declarative. Lacks built in validation for syntax errors. More error prone due to complex groovy scripting
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Declarative pipeline
+-
+- Declarative pipeline in jenkins is a structured, YAML like syntax for defining CICD pipelines.
+- It is built using pipeline{} block making it easier to read and maintain compared to scripted
+
+- **Advantages of Declarative**
+  - Simpler and more readable as it uses structured format with predefined directives
+  - Less error prone as it includes built in error handling and valication
+  - Supports stages and parallel execution due to optimization for CICD
+  - Build it post actions to auto handle success, failure and cleanup tasks
+ 
+- Basic Structure
+
+  ![image](https://github.com/user-attachments/assets/978dfa10-1294-4b6e-9e2a-0fb3ec3856c1)
+
+- We can configure declarative pipeline either in Jenkins UI or in jenkinsfile in GIT repo
+
+![image](https://github.com/user-attachments/assets/cd1f3ada-ce3c-4e85-ab28-6981e0a9088c)
+
+- _**Breakdown of pipeline**_
+  - **pipeline{} block** :- Defines jenkins pipeline structure. Everything inside this block follows declarative syntax\
+  - **agent any** :- specifies where the pipeline will run. any means it will run on any available agent
+  - **environment{} block** :- defines env variables used throughout pipeline. DEPLOY_SERVER stores the server details.
+  - **stages{} block** :- Contains multiple stage{} blocks where each stage represents CICD step like checkout code, build, test, deploy
+  - **steps{} block** :- Defines actual commands or actions in each stage. Uses shell commands to execute maven and deployment commands
+  - **post{} block** :- Handles post pipeline actions like success/failure
+
+- We can define declarative pipeline in below ways
+
+1. **Using Pipeline Job type (Recommended)**
+- New item - Pipeline - Go to pipeline section - Paste declarative pipeline syntax in script textbox - Save job - Build to run the pipeline
+
+![image](https://github.com/user-attachments/assets/6b848b5e-6d99-4ddf-862e-28d68b8a3ed9)
+![image](https://github.com/user-attachments/assets/8910a8cd-e7e3-4031-bdbd-6b9ac249042d)
+
+2. **Using Jenkinsfile in Git repo (Recommended for prod)**
+- Create jenkinsfile in git repo - Add declarative syntax - Commit and push file to git repo - In jenkins Create job (Pipeline) - Set definition as "**Pipeline script from SCM**" - Enter repo URL - Set script path: jenkinsfile - Save job - Build to run the pipeline
+
+![image](https://github.com/user-attachments/assets/bfa8d66f-108a-42b1-8bcb-385e180c88d3)
+
+3. **Using multi-branch pipelines for Git repositories**
+- If we've multiple branches with different jenkinsfile, use multibranch pipeline job
+- New item - Multibranch pipeline - Under branch sources choose git or github - enter repo URL - Jenkins will auto detect and execute jenkinsfile in different branches - save
+- Best for managing multiple branches with different pipelines (dev, staging, prod)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain the concept of Jenkinsfile
+-
+- Jenkinsfile is a text file contains definition of jenkins pipeline. It allows developers to define CICD pipelines as code using either declarative or scripted pipeline syntax
+- Instead of configurimg pipelines manually in jenkins UI we store jenkinsfile inside SCR, enabling version control and automation
+- **Why to use Jenkinsfile?**
+  - Pipeline as a code
+  - Automation
+  - Reusability
+  - Collaboration
+  - History and rollback
+- Jenkinsfile is used in declarative mostly as it uses structured YAML syntax, includes built in error handling
+  - Create jenkinsfile in git repo - Add declarative syntax - Commit and push file to git repo - In jenkins Create job (Pipeline) - Set definition as "**Pipeline script from SCM**" - Enter repo URL - Set script path: jenkinsfile - Save job
+  - Here jenkins auto detects and runs pipeline
+- **Best practices for writing jenkinsfile**
+  - Use env variables instead of hardcoding values
+  - Use declarative pipelines
+  - Add error handling and post actions
+  - Leverage parallel execution of stages
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain post-build actions in jenkins pileline
+-
+- Post build actions in jenkins define what happens after pipeline gets executed. These actions help with notifications, cleanup, archiving artifacts or handling failures
+- In declarative pipelines post build actions are defined inside post{} block while in scripted they are handled using try-catch-finally
+
+![image](https://github.com/user-attachments/assets/62f6d776-15ea-4a34-a42a-e484655fc9fa)
+

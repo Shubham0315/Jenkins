@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 echo "Deploying application"
-                sh 'scp target/*.jar ${DEPLOY_SERVER}'
+                sh 'scp target/*.jar ${env.DEPLOY_SERVER}'
             }
         }
     }

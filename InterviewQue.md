@@ -222,6 +222,8 @@ Explain Manage Jenkins
 
 5. **_System Log_**
 - To view Jenkins log files in real time to troubleshoot
+- Jenkins logs for specific job are collected at :- **$JENKINS_HOME/jobs/<job_name>/builds/<build_number>/log**
+- Jenkins system logs are collected at :- **/var/log/jenkins/jenkins.log**
 
 ![image](https://github.com/user-attachments/assets/bf945a63-6729-4de2-a0d8-62440e292333)
 
